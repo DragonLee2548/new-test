@@ -21,7 +21,7 @@ npm run dev
 
 ## GitHub Pages 배포
 
-저장소 Settings → Pages → Source를 **GitHub Actions**로 설정한 뒤 `main` 브랜치에 push하면 `.github/workflows/deploy.yml`이 자동 배포합니다.
+저장소 Settings → Pages → Source를 **GitHub Actions**로 설정한 뒤 `main` 브랜치에 push하면 `.github/workflows/nextjs.yml`이 자동 배포합니다.
 
 - 배포 URL: `https://<username>.github.io/new-test/`
 - GitHub Pages는 정적 사이트라 `/api/submit` 저장 기능은 동작하지 않습니다 (로컬 `npm run dev`에서만 저장됨)
