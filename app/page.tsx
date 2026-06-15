@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import StepCard from "@/components/StepCard";
 import { assetPath } from "@/lib/assetPath";
+import { submitAnswers } from "@/lib/submitAnswers";
 import RunawayButton from "@/components/RunawayButton";
 import ShrinkButton from "@/components/ShrinkButton";
 
@@ -44,13 +45,9 @@ export default function Home() {
   const handleSubmit = async () => {
     setSubmitting(true);
     try {
-      await fetch("/api/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(answers),
-      });
+      await submitAnswers(answers);
     } catch {
-      // 저장 실패해도 완료 화면은 보여준다 (개인용 토이)
+      // 저장 실패해도 완료 화면은 보여준다
     } finally {
       setSubmitting(false);
       setDone(true);

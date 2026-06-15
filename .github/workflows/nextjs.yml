@@ -72,6 +72,11 @@ jobs:
         env:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_GOOGLE_SHEETS_URL: ${{ vars.NEXT_PUBLIC_GOOGLE_SHEETS_URL }}
+          NEXT_PUBLIC_GOOGLE_FORM_ACTION: ${{ vars.NEXT_PUBLIC_GOOGLE_FORM_ACTION }}
+          NEXT_PUBLIC_GOOGLE_FORM_ENTRY_ACCEPT: ${{ vars.NEXT_PUBLIC_GOOGLE_FORM_ENTRY_ACCEPT }}
+          NEXT_PUBLIC_GOOGLE_FORM_ENTRY_DAY: ${{ vars.NEXT_PUBLIC_GOOGLE_FORM_ENTRY_DAY }}
+          NEXT_PUBLIC_GOOGLE_FORM_ENTRY_FOOD: ${{ vars.NEXT_PUBLIC_GOOGLE_FORM_ENTRY_FOOD }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
