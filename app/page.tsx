@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import StepCard from "@/components/StepCard";
+import { assetPath } from "@/lib/assetPath";
 import RunawayButton from "@/components/RunawayButton";
 import ShrinkButton from "@/components/ShrinkButton";
 
@@ -65,10 +66,10 @@ export default function Home() {
             key="done"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="w-full max-w-xl rounded-[2rem] border border-white/70 bg-white/80 p-9 text-center shadow-soft backdrop-blur-sm"
+            className="w-full max-w-[640px] rounded-[2rem] border border-white/70 bg-white/80 p-9 text-center shadow-soft backdrop-blur-sm"
           >
             <div className="animate-floaty">
-              <Image src="/image/333.png" alt="고양이 캐릭터" width={160} height={160} className="mx-auto" />
+              <Image src={assetPath("/image/333.png")} alt="고양이 캐릭터" width={160} height={160} className="mx-auto" />
             </div>
             <h1 className="mt-3 text-2xl font-bold text-deeprose">데이트 신청이 전달되었어요! 💌</h1>
             <p className="mt-2 leading-relaxed text-[#4a3640]">

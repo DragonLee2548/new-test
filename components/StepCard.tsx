@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { assetPath } from "@/lib/assetPath";
 
 type Props = {
   step: number;
@@ -18,11 +19,11 @@ export default function StepCard({
   badge,
   question,
   hint,
-  character = "/image/333.png",
+  character = assetPath("/image/333.png"),
   children,
 }: Props) {
   return (
-    <div className="w-full max-w-xl animate-pop rounded-[2rem] border border-white/70 bg-white/75 p-7 shadow-soft backdrop-blur-sm sm:p-9">
+    <div className="w-full max-w-[640px] animate-pop rounded-[2rem] border border-white/70 bg-white/75 p-7 shadow-soft backdrop-blur-sm sm:p-9">
       {/* 진행 표시 */}
       <div className="mb-5 flex items-center justify-center gap-2">
         {Array.from({ length: total }).map((_, i) => (
