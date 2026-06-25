@@ -352,7 +352,7 @@ function PlayingMaze({ character, difficulty, rows, cols, onFinish }: PlayingPro
           ←
         </button>
         <button
-          className="btn-flash btn-ghost text-xl"
+          className="btn-flash btn-blue text-xl"
           onTouchStart={(e) => {
             e.preventDefault();
             tryMove("down");
