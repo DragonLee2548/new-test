@@ -1,70 +1,88 @@
-# 데이트 신청 시뮬레이션 💌
+# 먼작귀 파티 ✨
 
-여자친구에게 데이트를 신청하는 4단계 시뮬레이션 게임입니다.
+치이카와·우사기·하치와레 캐릭터로 즐기는 미니게임 파티입니다.
+
+| 경로 | 설명 |
+|------|------|
+| `/` | `/v2`로 리다이렉트 |
+| `/v2` | 캐릭터 선택 + 게임 허브 |
+| `/v2/mole` | 두더지 잡기 (40초 / 60초) |
+| `/v2/maze` | 미로 탈출 (하·중·상) |
+| `/v2/rps` | 가위바위보 10승 타임어택 |
+| `/v1` | 데이트 신청 4단계 시뮬레이션 (레거시) |
 
 ## 실행 방법
 
 ```bash
 npm install
-cp .env.example .env.local   # Google Sheets/Forms URL 설정
+cp .env.example .env.local
 npm run dev
 ```
 
-브라우저에서 http://localhost:3000 접속.
+브라우저에서 http://localhost:3000 접속 → `/v2`로 이동합니다.
 
-## 답변 저장 (Google Sheets / Forms)
+## 환경 변수
 
-GitHub Pages는 서버가 없어서 **Google Sheets 또는 Google Forms**로 저장합니다.
-둘 중 **하나만** 설정하면 됩니다 (Sheets 추천).
+`.env.example` 참고. 주요 항목:
 
-### 방법 A — Google Sheets (추천)
+| 변수 | 용도 |
+|------|------|
+| `NEXT_PUBLIC_V2_SCORES_URL` | v2 미니게임 신기록 저장 (Google Apps Script) |
+| `NEXT_PUBLIC_GOOGLE_SHEETS_URL` | v1 데이트 답변 저장 (Google Sheets) |
+| `NEXT_PUBLIC_SITE_URL` | Open Graph 미리보기용 사이트 URL (배포 시 설정) |
+| `NEXT_PUBLIC_BASE_PATH` | GitHub Pages 서브경로 (로컬은 비움) |
+
+### v2 신기록 저장 (Google Sheets)
 
 1. [Google Sheets](https://sheets.google.com) 새 스프레드시트 생성
-2. 1행 헤더 입력: `시간` | `데이트수락` | `요일` | `음식`
-3. **확장 프로그램 → Apps Script** → [`google-apps-script/Code.gs`](google-apps-script/Code.gs) 내용 붙여넣기
-4. **배포 → 새 배포 → 웹 앱**
-   - 실행: **나**
-   - 액세스: **모든 사용자**
-5. 배포 URL 복사 → `.env.local`에 설정:
+2. 1행 헤더: `시간` | `game` | `character` | `difficulty` | `score` | `ms` | `name` | `at`
+3. **확장 프로그램 → Apps Script** → [`google-apps-script/V2Scores.gs`](google-apps-script/V2Scores.gs) 붙여넣기
+4. **배포 → 새 배포 → 웹 앱** (실행: 나, 액세스: 모든 사용자)
+5. 배포 URL → `.env.local`:
+   ```
+   NEXT_PUBLIC_V2_SCORES_URL=https://script.google.com/macros/s/xxxxx/exec
+   ```
+6. GitHub Pages: **Settings → Secrets and variables → Actions → Variables**에 동일하게 등록
+
+URL을 설정하지 않으면 브라우저 `localStorage`에만 기록이 남습니다.
+
+### v1 답변 저장 (Google Sheets / Forms)
+
+v1(`/v1`) 전용. 둘 중 **하나만** 설정하면 됩니다.
+
+#### 방법 A — Google Sheets (추천)
+
+1. [Google Sheets](https://sheets.google.com) 새 스프레드시트 생성
+2. 1행 헤더: `시간` | `데이트수락` | `요일` | `음식`
+3. **확장 프로그램 → Apps Script** → [`google-apps-script/Code.gs`](google-apps-script/Code.gs) 붙여넣기
+4. **배포 → 새 배포 → 웹 앱** (실행: 나, 액세스: 모든 사용자)
+5. 배포 URL → `.env.local`:
    ```
    NEXT_PUBLIC_GOOGLE_SHEETS_URL=https://script.google.com/macros/s/xxxxx/exec
    ```
-6. GitHub Pages 배포 시: 저장소 **Settings → Secrets and variables → Actions → Variables** 에
-   `NEXT_PUBLIC_GOOGLE_SHEETS_URL` 추가 후 push
 
-제출하면 시트에 한 줄씩 쌓입니다.
-
-### 방법 B — Google Forms
+#### 방법 B — Google Forms
 
 1. [Google Forms](https://forms.google.com) 새 폼 생성
-2. 단답형 질문 3개 추가: `데이트 수락`, `요일`, `음식`
-3. 폼 우측 **⋮ → 미리 채우기 링크 받기** → 각 항목에 테스트 값 입력 → 링크 생성
-4. 링크 URL에서 `entry.123456789` 형태의 ID 확인
-5. `.env.local` 설정:
-   ```
-   NEXT_PUBLIC_GOOGLE_FORM_ACTION=https://docs.google.com/forms/d/e/FORM_ID/formResponse
-   NEXT_PUBLIC_GOOGLE_FORM_ENTRY_ACCEPT=entry.111111111
-   NEXT_PUBLIC_GOOGLE_FORM_ENTRY_DAY=entry.222222222
-   NEXT_PUBLIC_GOOGLE_FORM_ENTRY_FOOD=entry.333333333
-   ```
-6. GitHub Variables에도 동일하게 등록
+2. 단답형 질문 3개: `데이트 수락`, `요일`, `음식`
+3. 미리 채우기 링크에서 `entry.xxxxx` ID 확인 후 `.env.local` 설정 (`.env.example` 참고)
 
-폼 응답은 **응답 → 스프레드시트에 연결**로 시트에서도 볼 수 있습니다.
+#### 로컬 파일 저장 (개발용)
 
-### 로컬 파일 저장 (개발용)
-
-Google URL을 설정하지 않으면 `npm run dev` 시 `data/submissions.json`, `data/submissions.txt`에 저장됩니다.
+Google URL 없이 `npm run dev` 시 v1 제출은 `data/submissions.json`, `data/submissions.txt`에 저장됩니다.
 
 ## GitHub Pages 배포
 
-Settings → Pages → Source: **GitHub Actions** → `main` push 시 `.github/workflows/nextjs.yml` 배포.
+Settings → Pages → Source: **GitHub Actions** → `main` push 시 `.github/workflows/nextjs.yml`로 배포.
 
 - URL: `https://<username>.github.io/new-test/`
-- **Google Sheets/Forms URL을 GitHub Variables에 넣어야** 배포 사이트에서도 저장됩니다.
+- **Variables에 Google URL 등록**해야 배포 사이트에서도 저장이 동작합니다.
+- Open Graph 미리보기는 workflow가 `NEXT_PUBLIC_SITE_URL`을 자동 주입합니다.
 
-## 시나리오
+## 미니게임 요약
 
-1. 데이트 수락 — `좋습니다.`만 가능
-2. 요일 선택 — 6/17·6/18·6/19
-3. 음식 선택 — 이모지 8종
-4. 최종 확인 → Google Sheets/Forms에 저장
+1. **두더지 잡기** — 뿅망치로 두더지 팡팡, 40초 / 60초 모드
+2. **미로 탈출** — 방향키로 출구 찾기, 난이도 3단계
+3. **가위바위보** — 10번 먼저 이기기, 클리어 시간 기록
+
+캐릭터(우사기 / 치이카와 / 하치와레)를 고르면 각 게임에서 해당 캐릭터 이미지가 적용됩니다.

@@ -71,7 +71,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
           GITHUB_PAGES: "true"
+          NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_V2_SCORES_URL: ${{ vars.NEXT_PUBLIC_V2_SCORES_URL }}
           NEXT_PUBLIC_GOOGLE_SHEETS_URL: ${{ vars.NEXT_PUBLIC_GOOGLE_SHEETS_URL }}
           NEXT_PUBLIC_GOOGLE_FORM_ACTION: ${{ vars.NEXT_PUBLIC_GOOGLE_FORM_ACTION }}
           NEXT_PUBLIC_GOOGLE_FORM_ENTRY_ACCEPT: ${{ vars.NEXT_PUBLIC_GOOGLE_FORM_ENTRY_ACCEPT }}

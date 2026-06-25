@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gaegu:wght@700&family=Gowun+Dodum&family=Jua&display=swap");
+
+@font-face {
+  font-family: "Cafe24Ssurround";
+  src:
+    url("https://cdn.jsdelivr.net/gh/fonts-archive/Cafe24Ssurround@main/Cafe24Ssurround.woff2") format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/fonts-archive/Cafe24Ssurround@main/Cafe24Ssurround.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   color-scheme: light;
@@ -29,4 +39,130 @@ body {
   60% { transform: translate(-14px, 10px) rotate(-6deg) skewX(8deg); }
   80% { transform: translate(20px, -4px) rotate(9deg) skewY(6deg); }
   100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* 두더지 솟구치기 */
+@keyframes molePop {
+  0% { transform: translateY(110%); }
+  20% { transform: translateY(-8%); }
+  35% { transform: translateY(0%); }
+  85% { transform: translateY(0%); }
+  100% { transform: translateY(110%); }
+}
+
+@keyframes hitFlash {
+  0% { transform: scale(0.6); opacity: 0; }
+  40% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* 텍스트 강조용 */
+.text-stroke {
+  -webkit-text-stroke: 2px #4a3640;
+  text-shadow: 4px 4px 0 #fff, 0 6px 0 rgba(0, 0, 0, 0.15);
+}
+
+.text-stroke-white {
+  -webkit-text-stroke: 3px #fff;
+  paint-order: stroke fill;
+}
+
+.flash-bg {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 214, 227, 0.85) 0%, transparent 38%),
+    radial-gradient(circle at 85% 15%, rgba(186, 222, 255, 0.85) 0%, transparent 42%),
+    radial-gradient(circle at 75% 85%, rgba(255, 234, 130, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 25% 80%, rgba(195, 245, 220, 0.7) 0%, transparent 45%),
+    linear-gradient(180deg, #fff7f3 0%, #ffe3ee 100%);
+}
+
+.checker-bg {
+  background-image:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.5) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.5) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.5) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.5) 75%);
+  background-size: 28px 28px;
+  background-position: 0 0, 0 14px, 14px -14px, -14px 0;
+}
+
+.btn-flash {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 1rem;
+  font-family: "Jua", "Gowun Dodum", sans-serif;
+  font-size: 1.25rem;
+  color: #fff;
+  background: linear-gradient(180deg, #ff8fb7 0%, #ff5b8a 100%);
+  box-shadow: 0 6px 0 #c33e6b, 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
+  border: 3px solid #fff;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+.btn-flash:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #c33e6b, 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.btn-flash:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-yellow {
+  background: linear-gradient(180deg, #ffe07a 0%, #ffb347 100%);
+  box-shadow: 0 6px 0 #c98920, 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-yellow:active {
+  box-shadow: 0 2px 0 #c98920, 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-blue {
+  background: linear-gradient(180deg, #8ccfff 0%, #4ea8ff 100%);
+  box-shadow: 0 6px 0 #2674c2, 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-blue:active {
+  box-shadow: 0 2px 0 #2674c2, 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-green {
+  background: linear-gradient(180deg, #b6e89b 0%, #6cc24a 100%);
+  box-shadow: 0 6px 0 #3f8a26, 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-green:active {
+  box-shadow: 0 2px 0 #3f8a26, 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.8);
+  color: #4a3640;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.15), 0 8px 14px rgba(0,0,0,0.12);
+  text-shadow: none;
+  border: 3px solid #4a3640;
+}
+.btn-ghost:active {
+  box-shadow: 0 1px 0 rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.12);
+}
+
+.cursor-hammer {
+  cursor: crosshair;
+}
+
+/* 무지개 보더 */
+.rainbow-border {
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    conic-gradient(from 0deg, #ff5b8a, #ffd84d, #6cc24a, #4ea8ff, #c98bff, #ff5b8a) border-box;
+  border: 4px solid transparent;
+}
+
+/* 별 떨어짐 */
+@keyframes starFall {
+  0% { transform: translateY(-100vh) rotate(0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
 }

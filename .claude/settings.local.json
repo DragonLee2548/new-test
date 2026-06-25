@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/lee/Desktop/fairytale/github/ricklee2548/new-test/public/image/v2 /Users/lee/Desktop/fairytale/github/ricklee2548/new-test/public/image/먼작귀)",
+      "Bash(cp -R /Users/lee/Desktop/fairytale/github/ricklee2548/new-test/image/v2/. /Users/lee/Desktop/fairytale/github/ricklee2548/new-test/public/image/v2/)",
+      "Bash(cp -R /Users/lee/Desktop/fairytale/github/ricklee2548/new-test/image/먼작귀/. /Users/lee/Desktop/fairytale/github/ricklee2548/new-test/public/image/먼작귀/)",
+      "Bash(npx next *)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' --get --data-urlencode '' http://localhost:3137__TRACKED_VAR__)",
+      "Bash(kill %1)",
+      "Bash(xargs -I{} kill {})",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://cdn.jsdelivr.net/gh/webfontworld/cafe24/Cafe24Ssurround.css\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ssurround.woff\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001-2-2@1.0/Cafe24Ssurround.woff\")",
+      "Bash(curl -s \"https://cdn.jsdelivr.net/gh/webfontworld/cafe24/Cafe24Ssurround.css\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' https://cdn.jsdelivr.net/gh/fonts-archive/Cafe24Ssurround@main/__TRACKED_VAR__)"
+    ]
+  }
+}

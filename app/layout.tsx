@@ -1,9 +1,26 @@
 import type { Metadata, Viewport } from "next";
+import { getMetadataBase } from "@/lib/siteUrl";
 import "./globals.css";
 
+const title = "먼작귀 파티";
+const description = "우사기·치이카와·하치와레와 함께 두더지 잡기, 미로 탈출, 가위바위보 미니게임!";
+
 export const metadata: Metadata = {
-  title: "데이트 신청합니다 💌",
-  description: "남자친구가 보내는 데이트 신청 시뮬레이션",
+  metadataBase: getMetadataBase(),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    locale: "ko_KR",
+    type: "website",
+    siteName: title,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export const viewport: Viewport = {
@@ -12,11 +29,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
       <body>{children}</body>

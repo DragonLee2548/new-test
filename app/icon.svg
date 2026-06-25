@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe28a"/>
+      <stop offset="1" stop-color="#ff9d2e"/>
+    </linearGradient>
+    <radialGradient id="cheek" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff8aa6" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ff8aa6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <circle cx="32" cy="32" r="30" fill="url(#bg)" stroke="#ffffff" stroke-width="3"/>
+
+  <!-- cheeks -->
+  <ellipse cx="18" cy="40" rx="6" ry="4" fill="url(#cheek)"/>
+  <ellipse cx="46" cy="40" rx="6" ry="4" fill="url(#cheek)"/>
+
+  <!-- eyes -->
+  <ellipse cx="22" cy="30" rx="3" ry="4" fill="#3a2730"/>
+  <ellipse cx="42" cy="30" rx="3" ry="4" fill="#3a2730"/>
+  <circle cx="23" cy="29" r="1" fill="#ffffff"/>
+  <circle cx="43" cy="29" r="1" fill="#ffffff"/>
+
+  <!-- mouth -->
+  <path d="M 24 42 Q 32 49 40 42" stroke="#3a2730" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- sparkle -->
+  <g transform="translate(50 16)">
+    <path d="M 0 -4 L 1 -1 L 4 0 L 1 1 L 0 4 L -1 1 L -4 0 L -1 -1 Z" fill="#ffffff"/>
+  </g>
+  <g transform="translate(14 14)">
+    <path d="M 0 -2.5 L 0.6 -0.6 L 2.5 0 L 0.6 0.6 L 0 2.5 L -0.6 0.6 L -2.5 0 L -0.6 -0.6 Z" fill="#ffffff"/>
+  </g>
+</svg>
