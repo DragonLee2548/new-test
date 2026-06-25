@@ -97,7 +97,7 @@ export default function V2Page() {
               <div className="mt-10 flex gap-6">
                 {CHARACTER_ORDER.map((id, i) => (
                   <motion.div key={id} animate={{ y: [0, -14, 0], rotate: [-6, 6, -6] }} transition={{ duration: 2.4, delay: i * 0.3, repeat: Infinity }}>
-                    <Image src={CHARACTERS[id].setNbg} alt={id} width={140} height={140} className="drop-shadow-xl" />
+                    <Image src={CHARACTERS[id].portraitBg} alt={id} width={140} height={140} className="drop-shadow-xl" />
                   </motion.div>
                 ))}
               </div>
